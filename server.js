@@ -49,8 +49,8 @@ const connectDB = require('./database/db')
 connectDB()
 
 // Cors Policy
-const cors = require("./services/cors")
-cors(app)
+const cors = require("cors")
+cors(require('./services/cors'))
 
 //Routes
 app.use('/api/user', require('./components/user.route'))

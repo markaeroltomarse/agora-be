@@ -5,9 +5,9 @@ const app = express()
 
 const { errorHandler } = require('./middleware/errors')
 const winston = require('winston');
+
+
 //Logs 
-
-
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
@@ -37,9 +37,17 @@ app.use((req, res, next) => {
     next()
 })
 
+
 //Config
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+require('dotenv/config')
+
+
+// Run database
+const connectDB = require('./database/db')
+connectDB()
+
 
 const cors = require('cors')
 app.use(cors({

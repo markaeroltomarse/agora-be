@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler')
-const repo = require('./user.repository')
+const repo = require('./user.repository/mongo')
 const bcrypt = require('../services/bcrypt')
 const jwt = require('../services/jwt')
 const getUsers = asyncHandler(async (req, res) => {
@@ -21,7 +21,7 @@ const insertUser = asyncHandler(async (req, res) => {
     let user = await repo.insertUser(newuser)
 
     res.status(200).json({
-        msg:'Insert successfully',
+        msg:'Success register',
         user,
     })
 })
@@ -31,6 +31,8 @@ const login = asyncHandler(async (req, res) => {
         username,
         password
     } = req.body
+
+    console.log(req.body)
 
     const user = await repo.findUserByUsername(username)
 
@@ -45,8 +47,25 @@ const login = asyncHandler(async (req, res) => {
     throw new Error("Invalid login")
 })
 
+
+const getUserByUsername = asyncHandler(async (req, res) => {
+    const username = req.params.username
+    const user = await repo.findUserByUsername(username)
+    console.log(user)
+    res.json(user)
+})
+
+
+const getUserByUID = asyncHandler(async (req, res) => {
+    const uid = req.params.uid
+    const user = await repo.findUserByID(uid)
+    res.json(user)
+})
+
 module.exports = {
     getUsers,
     insertUser,
-    login
+    login,
+    getUserByUsername,
+    getUserByUID
 }

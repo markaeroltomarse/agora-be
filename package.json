@@ -2,12 +2,18 @@
   "name": "users",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon -L --inspect=0.0.0.0:3001 server",
     "start": "node server"
   },
-  "keywords": [],
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "engines": {
+    "node": "16.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

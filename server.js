@@ -72,3 +72,9 @@ const PORT = process.env.PORT | 3001
 app.listen(PORT, async () => {
     console.log(`User service listening on port ${PORT}`)
 })
+
+
+//for prod
+if (process.env.NODE_ENV === 'production') {
+    module.exports = app
+}

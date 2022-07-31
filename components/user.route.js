@@ -10,10 +10,10 @@ router.route('/')
 router.route('/login')
     .post(controllers.login)
 
-router.route('/:username')
+router.route('/username')
     .get(protect, controllers.getUserByUsername)
 
-router.route('/uid/:uid')
+router.route('/uid')
     .get(protect, controllers.getUserByUID)
     
 module.exports = router

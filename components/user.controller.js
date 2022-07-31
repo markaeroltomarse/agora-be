@@ -49,7 +49,7 @@ const login = asyncHandler(async (req, res) => {
 
 
 const getUserByUsername = asyncHandler(async (req, res) => {
-    const username = req.params.username
+    const username = req.query.username
     const user = await repo.findUserByUsername(username)
     console.log(user)
     res.json(user)
@@ -57,7 +57,7 @@ const getUserByUsername = asyncHandler(async (req, res) => {
 
 
 const getUserByUID = asyncHandler(async (req, res) => {
-    const uid = req.params.uid
+    const uid = req.query.uid
     const user = await repo.findUserByID(uid)
     res.json(user)
 })

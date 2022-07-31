@@ -50,7 +50,7 @@ connectDB()
 
 // Cors Policy
 const cors = require("cors")
-cors(require('./services/cors'))
+app.use(cors(require('./services/cors')))
 
 //Routes
 app.use('/api/user', require('./components/user.route'))

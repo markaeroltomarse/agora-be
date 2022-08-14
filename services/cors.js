@@ -1,10 +1,7 @@
 
 
-let allowlist = ['http://localhost:3000']
-const isProd = process.env.NODE_ENV === 'production'
-if (isProd) {
-    allowlist = ['https://vite-react-nine.vercel.app/']
-}
+let allowlist = ['http://localhost:3000', 'https://vite-react-nine.vercel.app']
+
 
 var corsOptions = {
   origin: function (origin, callback) {

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -L --inspect=0.0.0.0:3001 server",
+    "dev": "nodemon server",
     "start": "node server.js"
   },
   "keywords": [

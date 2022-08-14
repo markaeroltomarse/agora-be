@@ -53,7 +53,8 @@ const cors = require("cors")
 app.use(cors(require('./services/cors')))
 
 //Routes
-app.use('/api/user', require('./components/user.route'))
+app.use('/api/user', require('./components/user/user.route'))
+app.use('/api/room', require('./components/room/room.route'))
 
 // Error handler
 app.use(errorHandler)
@@ -61,14 +62,10 @@ app.use(errorHandler)
 //dotenv
 require('dotenv/config')
 
-app.use('/', (req, res) => {
-    res.send("User service asdasd")
-})
-
 // Start the app
 const PORT = process.env.PORT | 3001
 app.listen(PORT, async () => {
-    console.log(`User service listening on port ${PORT}`)
+    console.log(`Todos service listening on port ${PORT}`)
 })
 
 

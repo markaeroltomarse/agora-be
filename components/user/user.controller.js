@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const repo = require('./user.repository/mongo')
-const bcrypt = require('../services/bcrypt')
-const jwt = require('../services/jwt')
+const bcrypt = require('../../services/bcrypt')
+const jwt = require('../../services/jwt')
 const getUsers = asyncHandler(async (req, res) => {
     res.json({
         users: await repo.getUsers()
@@ -58,6 +58,8 @@ const getUserByUsername = asyncHandler(async (req, res) => {
 
 const getUserByUID = asyncHandler(async (req, res) => {
     const uid = req.query.uid
+
+    console.log(req.user)
     const user = await repo.findUserByID(uid)
     res.json(user)
 })

@@ -1,4 +1,4 @@
-const User = require('../../../database/mongo/user')
+const User = require('../../../../database/mongo/user/index')
 
 const getUsers = async () => {
     return await User.find()

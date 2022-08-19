@@ -7,6 +7,18 @@ const roomScheme = mongoose.Schema({
     },
     roomID: Number,
     participants: [String],
+    isShareScreen: {
+        type:String,
+        default() {
+            return ''
+        }
+    },
+    userSpot: {
+        type:String,
+        default() {
+            return ''
+        }
+    },
     admin:String,
 },{
     timestamps:true,

@@ -52,7 +52,7 @@ const cors = require("cors")
 const corsConfig = require('./services/cors')
 app.use(cors(corsConfig))
 
-//Routes
+//Routesnpm
 app.use('/api/user', require('./components/user/user.route'))
 app.use('/api/room', require('./components/room/room.route'))
 

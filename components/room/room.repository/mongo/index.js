@@ -14,12 +14,26 @@ const createRoom = (newRoom) => {
     
     newRoom.roomID = Math.floor(Math.random() * 10000)
     newRoom.participants = [newRoom.admin]
+   
     if (newRoom.roomName === '') newRoom.roomName = `Room ${newRoom.roomID}`
     return Rooms.create(newRoom)
 }
 
 const getRoomById = (roomID, username) => {
     return Rooms.findOne({ roomID, participants: username })
+}
+
+const getRoomState = (roomID) => {
+    return Rooms.findOne({ roomID }).select('isShareScreen userSpot')
+}
+
+const updateRoomState = ({ roomID, isShareScreen, userSpot }) => {
+    return Rooms.updateOne({ roomID }, {
+        $set: {
+            isShareScreen,
+            userSpot
+        }
+    })
 }
 
 const addParticipants = (roomID, username) => {
@@ -46,6 +60,8 @@ const removeParticipants = (roomID, username) => {
 
 module.exports = {
     getMyRooms,
+    getRoomState,
+    updateRoomState,
     createRoom,
     addParticipants,
     removeParticipants,

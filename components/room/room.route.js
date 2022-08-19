@@ -1,17 +1,21 @@
 const router = require('express').Router()
 const { protect } = require('../../middleware/auth')
 
-const controllers = require('./room.controller')
+const controller = require('./room.controller')
 router.route('/myrooms/:username')
-    .get(protect, controllers.getMyRooms)
+    .get(protect, controller.getMyRooms)
 
 router.route('/')
-    .post(protect, controllers.createRoom)
-    .get(protect, controllers.getRoomById)
-    .delete(protect, controllers.deleteRoomById)
-    .put(protect, controllers.addParticipants)
+    .post(protect, controller.createRoom)
+    .get(protect, controller.getRoomById)
+    .delete(protect, controller.deleteRoomById)
+    .put(protect, controller.addParticipants)
 
 router.route('/leave')
-    .delete(protect, controllers.removeParticipants)
+    .delete(protect, controller.removeParticipants)
+
+router.route('/state')
+    .get(protect, controller.getRoomState)
+    .put(protect, controller.updateRoomState)
 
 module.exports = router

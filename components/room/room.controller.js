@@ -52,6 +52,7 @@ const removeParticipants = asyncHandler(async (req, res) => {
     }
     console.log(req.query)
     let result = await repo.removeParticipants(roomID, username)
+
     res.status(200)
         .json(result)
 })
@@ -62,6 +63,30 @@ const getRoomById = asyncHandler(async (req, res) => {
     let room = await repo.getRoomById(req.query.id, req.query.username)
 
     res.status(200).json(room)
+})
+
+const getRoomState = asyncHandler(async (req, res) => {
+    if (!req.query.roomID) {
+        res.status(404)
+        throw new Error('Room not found')
+    }
+
+    const roomState = await repo.getRoomState(req.query.roomID)
+
+    res.json(roomState)
+})
+
+const updateRoomState = asyncHandler(async (req, res) => {
+    const { roomID, isShareScreen, userSpot } = req.body
+    console.log(req.body)
+    if (!roomID) {
+        res.status(404)
+        throw new Error('Room not found')
+    }
+
+    let result = await repo.updateRoomState(req.body)
+    console.log(result)
+    res.status(200).json(result)
 })
 
 const deleteRoomById = asyncHandler(async (req, res) => {
@@ -79,6 +104,8 @@ const deleteRoomById = asyncHandler(async (req, res) => {
 
 module.exports = {
     getMyRooms,
+    getRoomState,
+    updateRoomState,
     createRoom,
     addParticipants,
     removeParticipants,
